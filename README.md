@@ -2,14 +2,14 @@
 
 ```
 ╔════════════════════════════════════════════════════╗
-║            XML-RPC Testing Tool Kit               ║
-║             Explore • Attack • Exploit            ║
+║            XML-RPC Testing Tool Kit                ║
+║             Explore • Attack • Exploit             ║
 ╠════════════════════════════════════════════════════╣
-║  __  ______  _       _ _   ____  ____   ____      ║
-║  \ \/ /  _ \| | ___ (_) |_|  _ \|  _ \ / ___|     ║
-║   \  /| |_) | |/ _ \| | __| |_) | |_) | |         ║
-║   /  \|  __/| | (_) | | |_|  _ <|  __/| |___      ║
-║  /_/\_\_|   |_|\___/|_|\__|_| \_\_|    \____|     ║
+║  __  ______  _       _ _   ____  ____   ____       ║
+║  \ \/ /  _ \| | ___ (_) |_|  _ \|  _ \ / ___|      ║
+║   \  /| |_) | |/ _ \| | __| |_) | |_) | |          ║
+║   /  \|  __/| | (_) | | |_|  _ <|  __/| |___       ║
+║  /_/\_\_|   |_|\___/|_|\__|_| \_\_|    \____|      ║
 ╠════════════════════════════════════════════════════╣
 ║  Developed by: Krishanu Bepari                     ║
 ║  GitHub: github.com/kbepari52                      ║
@@ -22,7 +22,6 @@
 
 ## Features
 
-- Animated hacker-style banner
 - List all available XML-RPC methods
 - View method signatures and help (if supported)
 - Dynamic method invocation with argument prompts
@@ -61,6 +60,8 @@
 
 ## Example
 
+This tool allows you to test XML-RPC endpoints both with valid credentials (authenticated) and without credentials (unauthenticated), depending on your needs.
+
 ```
 Enter XML-RPC endpoint URL: http://example.com/xmlrpc.php
 Do you have valid credentials? (y/n): y
@@ -76,11 +77,43 @@ Enter password: *****
   - `sys`
   - `time`
 
-No third-party packages are required.
+If any of these dependencies are not available in your Python environment, you can install them using `pip` (though they are included by default in standard Python 3.x installations):
+
+```bash
+pip install xmlrpc
+```
 
 ## Disclaimer
 
-This tool is for educational and authorized penetration testing purposes only. Do not use it on systems you do not own or have explicit permission to test.
+This tool is intended for educational purposes and authorized penetration testing only. Use it responsibly and only on systems you own or have explicit, written permission to test. The author assumes no liability for any misuse or damage caused by this tool. By using this toolkit, you agree to comply with all applicable laws and regulations.
+
+## License
+
+This project is licensed under the MIT License.
+
+```
+MIT License
+
+Copyright (c) 2024 Krishanu Bepari
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
 
 ---
 
