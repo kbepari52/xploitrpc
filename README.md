@@ -34,7 +34,7 @@
 
 1. **Clone this repository:**
    ```bash
-   git clone https://github.com/kbepari52/xmlrpc-toolkit.git
+   git clone https://github.com/kbepari52/xploitrpc.git
    cd xmlrpc-toolkit
    ```
 
@@ -119,3 +119,4 @@ SOFTWARE.
 
 **Developed by:** Krishanu Bepari  
 **GitHub:** [github.com/kbepari52](https://github.com/kbepari52)
+
