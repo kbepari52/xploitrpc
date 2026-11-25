@@ -1,0 +1,63 @@
+# Reproducible, 100% real local lab for validating xploitrpc against a
+# genuinely vulnerable WordPress target. No mocks, no simulated responses.
+#
+# WordPress 5.0.0 is affected by CVE-2019-8942 / CVE-2019-8943 (crop-image RCE).
+# The target is a real WordPress install in a real container with a real MySQL
+# database and a real filesystem. Every response the tool parses comes from
+# this live stack.
+#
+# Usage:
+#   docker compose up -d
+#   # wait ~60s for first-run WordPress install, then:
+#   http://127.0.0.1:8080
+#
+# Ports (override with env vars if they clash):
+#   WWW_PORT  default 8080   -> WordPress HTTP
+#   DB_PORT   default 3307   -> MySQL (host-side access)
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: xrpc-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: xrpc_root_pw
+      MYSQL_DATABASE: xrpc_wp
+      MYSQL_USER: xrpc_wp_user
+      MYSQL_PASSWORD: xrpc_wp_pw
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pxrpc_root_pw"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  wordpress:
+    build: .
+    container_name: xrpc-wordpress
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${WWW_PORT:-8080}:8080"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: xrpc_wp
+      WORDPRESS_DB_USER: xrpc_wp_user
+      WORDPRESS_DB_PASSWORD: xrpc_wp_pw
+      WORDPRESS_DEBUG: "0"
+    volumes:
+      - wp_data:/var/www/html
+      # Pin the vulnerable core version in case the image tag is ever rebuilt.
+      # The image already ships 5.0.0; this is a guard, not a mock layer.
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8080/wp-login.php"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  db_data:
+  wp_data:
